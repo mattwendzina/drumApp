@@ -23,7 +23,7 @@
       /* height: 100vh; */
       display: flex;
       justify-content: space-evenly;
-      align-items: center;
+      align-items: flex-end;
       flex-wrap: wrap;
       z-index: 0;
     }
@@ -31,7 +31,7 @@
       content: "";
       position: absolute;
       top: 0;
-      bottom: -100px;
+      bottom: 0;
       left: 0;
       right: 0;
       background-image: linear-gradient(red, yellow);
@@ -41,9 +41,10 @@
 
     h1 {
       color: white;
-      font-size: 100px;
+      font-size: 50px;
       z-index: 2;
       flex: 1 100%;
+      margin: 10px;
     }
 
     .key {
@@ -61,6 +62,13 @@
       transition: 50ms ease-in-out;
       background: #d3f1ff;
       padding: 5px;
+    }
+
+    .key:hover,
+    #stop:hover {
+      background: #88f08b;
+      box-shadow: 5px 5px;
+      cursor: pointer;
     }
 
     .guitars,
@@ -95,53 +103,126 @@
     }
   </style>
   <body>
-      
     <div class="container">
       <h1>Music Machine</h1>
       <div class="bassSounds">
-        <div data-key="65" class="key basses">Funky Bass</div>
-        <input data-key="65" id="65" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-      </div> <!-- Bass Sounds -->
-      <div class="guitarSounds">
-        <div data-key="83" class="key guitars">Guitar Riff 1</div>
-        <input data-key="83" id="83" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-        <div data-key="68" class="key guitars">Guitar Riff 2</div>
-        <input data-key="68" id="68" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-      </div> <!-- Guitar Sounds -->
-      <div class="pianoSounds">
-        <div data-key="70" class="key piano"> Piano </div>
-        <input data-key="70" id="70" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-        <div data-key="74" class="key piano">Organ</div>
-        <input data-key="74" id="74" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-      </div> <!-- Piano Sounds -->
-      <div class=" drums">
-        <div data-key="75" class="key">Kick</div>
-            <input data-key="75" id="75" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-                onchange="SetVolume(this)"></input>
-        <div data-key="76" class="key">Hats</div>
-        <input data-key="76" id="76" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
-        <div data-key="186" class="key"> Snare </div>
-        <input data-key="186" id="186" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
-            onchange="SetVolume(this)"></input>
+        <div data-key="65" class="key basses" onclick="playInstrument(this)">
+          <p>Funky Bass</p>
+          <audio data-key="65" src="sounds/bassRiff.mp3"></audio>
+        </div>
+        <input
+          id="65"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
       </div>
-    <button onclick="stop()">STOP</button>
-      
+      <!-- Bass Sounds -->
+      <div class="guitarSounds">
+        <div data-key="83" class="key guitars" onclick="playInstrument(this)">
+          <p>Guitar Riff 1</p>
+          <audio data-key="83" src="sounds/guitarRiffOne.mp3"></audio>
+        </div>
+        <input
+          id="83"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+        <div data-key="68" class="key guitars" onclick="playInstrument(this)">
+          <p>Guitar Riff 2</p>
+          <audio data-key="68" src="sounds/guitarRiffTwo.mp3"></audio>
+        </div>
+        <input
+          id="68"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+      </div>
+      <!-- Guitar Sounds -->
+      <div class="pianoSounds">
+        <div data-key="70" class="key piano" onclick="playInstrument(this)">
+          <p>Piano</p>
+          <audio data-key="70" src="sounds/pianoOne.mp3"></audio>
+        </div>
+        <input
+          id="70"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+        <div data-key="74" class="key piano" onclick="playInstrument(this)">
+          <p>Organ</p>
+          <audio data-key="74" src="sounds/organOne.mp3"></audio>
+        </div>
+        <input
+          id="74"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+      </div>
+      <!-- Piano Sounds -->
+      <div class=" drums">
+        <div data-key="75" class="key" onclick="playInstrument(this)">
+          <p>Kick</p>
+          <audio data-key="75" src="sounds/kickDrum.mp3"></audio>
+        </div>
+        <input
+          id="75"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+        <div data-key="76" class="key" onclick="playInstrument(this)">
+          <p>Hats</p>
+          <audio data-key="76" src="sounds/snappin-bap.wav"></audio>
+        </div>
+        <input
+          id="76"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+        <div data-key="186" class="key" onclick="playInstrument(this)">
+          <p>Snare</p>
+          <audio data-key="186" src="sounds/trigger-bap.wav"></audio>
+        </div>
+        <input
+          id="186"
+          type="range"
+          min="0"
+          max="100"
+          step="1"
+          oninput="SetVolume(this)"
+          onchange="SetVolume(this)"
+        />
+      </div>
+      <button id="stop" onclick="stop()">STOP</button>
     </div>
     <!-- Container -->
-    <audio data-key="65" src="sounds/bassRiff.mp3"></audio>
-    <audio data-key="83" src="sounds/guitarRiffOne.mp3"></audio>
-    <audio data-key="68" src="sounds/guitarRiffTwo.mp3"></audio>
-    <audio data-key="70" src="sounds/pianoOne.mp3"></audio>
-    <audio data-key="74" src="sounds/organOne.mp3"></audio>
-    <audio data-key="75" src="sounds/kickDrum.mp3"></audio>
-    <audio data-key="76" src="sounds/snappin-bap.wav"></audio>
-    <audio data-key="186" src="sounds/trigger-bap.wav"></audio>
 
     <script>
       window.addEventListener("keydown", function(e) {
@@ -152,11 +233,18 @@
 
         key.classList.add("buttonClick");
       });
-
       window.addEventListener("keyup", function(e) {
         const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
         key.classList.remove("buttonClick");
       });
+
+      function playInstrument(e) {
+        const audio = document.querySelector(
+          `audio[data-key="${e.children[1].attributes[0].nodeValue}"]`
+        );
+        audio.currentTime = 0;
+        audio.play();
+      }
 
       function stop() {
         document.location.reload();
@@ -164,22 +252,21 @@
 
       function SetVolume(val) {
         //   console.log(val.value)
-// var audio = document.querySelectorAll("audio")
-// audio.forEach(function(element) {
-//     var newVolume = element.volume
-//     var exactVolume = val /100
-//     console.log(val.value)
-// })
+        // var audio = document.querySelectorAll("audio")
+        // audio.forEach(function(element) {
+        //     var newVolume = element.volume
+        //     var exactVolume = val /100
+        //     console.log(val.value)
+        // })
 
-            var audio = document.querySelector(`audio[data-key="${val.id}"]`);
-            var volume = val.value / 100;
-                audio.volume = volume
-                console.log(audio.volume)
-            
-        }
-        function newFunction(event){
-            console.log(event)
-        }
+        var audio = document.querySelector(`audio[data-key="${val.id}"]`);
+        var volume = val.value / 100;
+        audio.volume = volume;
+        console.log(audio.volume);
+      }
+      function newFunction(event) {
+        console.log(event);
+      }
     </script>
   </body>
 </html>

@@ -100,35 +100,35 @@
       <h1>Music Machine</h1>
       <div class="bassSounds">
         <div data-key="65" class="key basses">Funky Bass</div>
-        <input data-key="65" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="65" id="65" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
       </div> <!-- Bass Sounds -->
       <div class="guitarSounds">
         <div data-key="83" class="key guitars">Guitar Riff 1</div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="83" id="83" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
         <div data-key="68" class="key guitars">Guitar Riff 2</div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="68" id="68" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
       </div> <!-- Guitar Sounds -->
       <div class="pianoSounds">
         <div data-key="70" class="key piano"> Piano </div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="70" id="70" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
         <div data-key="74" class="key piano">Organ</div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="74" id="74" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
       </div> <!-- Piano Sounds -->
       <div class=" drums">
         <div data-key="75" class="key">Kick</div>
-            <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-                onchange="SetVolume(this.value)"></input>
+            <input data-key="75" id="75" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+                onchange="SetVolume(this)"></input>
         <div data-key="76" class="key">Hats</div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="76" id="76" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
         <div data-key="186" class="key"> Snare </div>
-        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
-            onchange="SetVolume(this.value)"></input>
+        <input data-key="186" id="186" type="range" min="0" max="100" step="1" oninput="SetVolume(this)"
+            onchange="SetVolume(this)"></input>
       </div>
     <button onclick="stop()">STOP</button>
       
@@ -163,13 +163,19 @@
       }
 
       function SetVolume(val) {
-          console.log(val.type)
-          
-          
-            var audio = document.querySelectorAll('audio');
-            audio.forEach(function(element){
-                element.volume = val / 100;
-            })
+        //   console.log(val.value)
+// var audio = document.querySelectorAll("audio")
+// audio.forEach(function(element) {
+//     var newVolume = element.volume
+//     var exactVolume = val /100
+//     console.log(val.value)
+// })
+
+            var audio = document.querySelector(`audio[data-key="${val.id}"]`);
+            var volume = val.value / 100;
+                audio.volume = volume
+                console.log(audio.volume)
+            
         }
         function newFunction(event){
             console.log(event)

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display"
+      rel="stylesheet"
+    />
+  </head>
+  <style>
+    body {
+      font-family: "Major Mono Display", monospace;
+      background-image: url("images/saxophone-3366032_1280.jpg");
+      background-size: cover;
+      z-index: 1;
+    }
+    .container {
+      position: relative;
+      /* height: 100vh; */
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-wrap: wrap;
+      z-index: 0;
+    }
+    body:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: -100px;
+      left: 0;
+      right: 0;
+      background-image: linear-gradient(red, yellow);
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    h1 {
+      color: white;
+      font-size: 100px;
+      z-index: 2;
+      flex: 1 100%;
+    }
+
+    .key {
+      font-variant: small-caps;
+      font-size: 60px;
+      height: 120px;
+      width: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid 1px black;
+      border-radius: 5px;
+      margin: 5px;
+      box-shadow: 3px 3px;
+      transition: 50ms ease-in-out;
+      background: #d3f1ff;
+      padding: 5px;
+    }
+
+    .guitars,
+    .basses,
+    .piano {
+      height: 160px;
+      width: 260px;
+    }
+
+    .buttonClick {
+      background: #88f08b;
+      box-shadow: 5px 5px;
+    }
+
+    button {
+      flex: 1 100%;
+      font-variant: small-caps;
+      font-size: 40px;
+      height: 60px;
+      width: 160px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: solid 1px black;
+      border-radius: 5px;
+      margin: 5px;
+      box-shadow: 3px 3px;
+      transition: 50ms ease-in-out;
+      background: #d3f1ff;
+      padding: 5px;
+      font-family: "Major Mono Display", monospace;
+    }
+  </style>
+  <body>
+      
+    <div class="container">
+      <h1>Music Machine</h1>
+      <div class="bassSounds">
+        <div data-key="65" class="key basses">Funky Bass</div>
+        <input data-key="65" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+      </div> <!-- Bass Sounds -->
+      <div class="guitarSounds">
+        <div data-key="83" class="key guitars">Guitar Riff 1</div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+        <div data-key="68" class="key guitars">Guitar Riff 2</div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+      </div> <!-- Guitar Sounds -->
+      <div class="pianoSounds">
+        <div data-key="70" class="key piano"> Piano </div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+        <div data-key="74" class="key piano">Organ</div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+      </div> <!-- Piano Sounds -->
+      <div class=" drums">
+        <div data-key="75" class="key">Kick</div>
+            <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+                onchange="SetVolume(this.value)"></input>
+        <div data-key="76" class="key">Hats</div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+        <div data-key="186" class="key"> Snare </div>
+        <input id="vol-control" type="range" min="0" max="100" step="1" oninput="SetVolume(this.value)"
+            onchange="SetVolume(this.value)"></input>
+      </div>
+    <button onclick="stop()">STOP</button>
+      
+    </div>
+    <!-- Container -->
+    <audio data-key="65" src="sounds/bassRiff.mp3"></audio>
+    <audio data-key="83" src="sounds/guitarRiffOne.mp3"></audio>
+    <audio data-key="68" src="sounds/guitarRiffTwo.mp3"></audio>
+    <audio data-key="70" src="sounds/pianoOne.mp3"></audio>
+    <audio data-key="74" src="sounds/organOne.mp3"></audio>
+    <audio data-key="75" src="sounds/kickDrum.mp3"></audio>
+    <audio data-key="76" src="sounds/snappin-bap.wav"></audio>
+    <audio data-key="186" src="sounds/trigger-bap.wav"></audio>
+
+    <script>
+      window.addEventListener("keydown", function(e) {
+        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        audio.currentTime = 0;
+        audio.play();
+
+        key.classList.add("buttonClick");
+      });
+
+      window.addEventListener("keyup", function(e) {
+        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
+        key.classList.remove("buttonClick");
+      });
+
+      function stop() {
+        document.location.reload();
+      }
+
+      function SetVolume(val) {
+          console.log(val.type)
+          
+          
+            // var audio = document.querySelectorAll('audio');
+            // audio.forEach(function(element){
+            //     element.volume = val / 100;
+            // })
+        }
+        function newFunction(event){
+            console.log(event)
+        }
+    </script>
+  </body>
+</html>

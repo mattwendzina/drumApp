@@ -7,114 +7,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <link
-      href="https://fonts.googleapis.com/css?family=Major+Mono+Display"
+      href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Raleway"
       rel="stylesheet"
     />
+    <link href="./index.css" rel="stylesheet" />
+    <script src="./index.js"></script>
   </head>
-  <style>
-    body {
-      font-family: "Major Mono Display", monospace;
-      background-image: url("images/saxophone-3366032_1280.jpg");
-      background-size: cover;
-      z-index: 1;
-    }
-    .container {
-      position: relative;
-      /* height: 100vh; */
-      display: flex;
-      justify-content: space-evenly;
-      align-items: flex-end;
-      flex-wrap: wrap;
-      z-index: 0;
-    }
-    body:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background-image: linear-gradient(red, yellow);
-      opacity: 0.4;
-      z-index: 0;
-    }
 
-    h1 {
-      color: white;
-      font-size: 50px;
-      z-index: 2;
-      flex: 1 100%;
-      margin: 10px;
-    }
-
-    .key {
-      font-variant: small-caps;
-      font-size: 60px;
-      height: 120px;
-      width: 160px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: solid 1px black;
-      border-radius: 5px;
-      margin: 5px;
-      box-shadow: 3px 3px;
-      transition: 50ms ease-in-out;
-      background: #d3f1ff;
-      padding: 5px;
-    }
-
-    .key:hover,
-    #stop:hover {
-      background: #88f08b;
-      box-shadow: 5px 5px;
-      cursor: pointer;
-    }
-
-    .guitars,
-    .basses,
-    .piano {
-      height: 160px;
-      width: 260px;
-    }
-
-    .buttonClick {
-      background: #88f08b;
-      box-shadow: 5px 5px;
-    }
-
-    button {
-      flex: 1 100%;
-      font-variant: small-caps;
-      font-size: 40px;
-      height: 60px;
-      width: 160px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border: solid 1px black;
-      border-radius: 5px;
-      margin: 5px;
-      box-shadow: 3px 3px;
-      transition: 50ms ease-in-out;
-      background: #d3f1ff;
-      padding: 5px;
-      font-family: "Major Mono Display", monospace;
-    }
-  </style>
   <body>
     <div class="container">
       <h1>Music Machine</h1>
+      <div class="instructionsContainer">
+        <p>
+          Practice your drum skills with a custom backing track. Control the
+          volume of each track to get the sound and feel that you want.
+        </p>
+      </div>
       <div class="bassSounds">
         <div data-key="65" class="key basses" onclick="playInstrument(this)">
-          <p>Funky Bass</p>
+          <p class="instrument">Funky Bass</p>
+          <p class="keyboardLetter">"A"</p>
           <audio data-key="65" src="sounds/bassRiff.mp3"></audio>
         </div>
         <input
           id="65"
           type="range"
           min="0"
-          max="100"
+          max="200"
           step="1"
           oninput="SetVolume(this)"
           onchange="SetVolume(this)"
@@ -123,7 +42,8 @@
       <!-- Bass Sounds -->
       <div class="guitarSounds">
         <div data-key="83" class="key guitars" onclick="playInstrument(this)">
-          <p>Guitar Riff 1</p>
+          <p class="instrument">Guitar Riff 1</p>
+          <p class="keyboardLetter">"S"</p>
           <audio data-key="83" src="sounds/guitarRiffOne.mp3"></audio>
         </div>
         <input
@@ -136,7 +56,8 @@
           onchange="SetVolume(this)"
         />
         <div data-key="68" class="key guitars" onclick="playInstrument(this)">
-          <p>Guitar Riff 2</p>
+          <p class="instrument">Guitar Riff 2</p>
+          <p class="keyboardLetter">"D"</p>
           <audio data-key="68" src="sounds/guitarRiffTwo.mp3"></audio>
         </div>
         <input
@@ -152,7 +73,8 @@
       <!-- Guitar Sounds -->
       <div class="pianoSounds">
         <div data-key="70" class="key piano" onclick="playInstrument(this)">
-          <p>Piano</p>
+          <p class="instrument">Piano</p>
+          <p class="keyboardLetter">"F"</p>
           <audio data-key="70" src="sounds/pianoOne.mp3"></audio>
         </div>
         <input
@@ -165,7 +87,8 @@
           onchange="SetVolume(this)"
         />
         <div data-key="74" class="key piano" onclick="playInstrument(this)">
-          <p>Organ</p>
+          <p class="instrument">Organ</p>
+          <p class="keyboardLetter">"J"</p>
           <audio data-key="74" src="sounds/organOne.mp3"></audio>
         </div>
         <input
@@ -181,7 +104,8 @@
       <!-- Piano Sounds -->
       <div class=" drums">
         <div data-key="75" class="key" onclick="playInstrument(this)">
-          <p>Kick</p>
+          <p class="instrument">Kick</p>
+          <p class="keyboardLetter">"K"</p>
           <audio data-key="75" src="sounds/kickDrum.mp3"></audio>
         </div>
         <input
@@ -194,7 +118,8 @@
           onchange="SetVolume(this)"
         />
         <div data-key="76" class="key" onclick="playInstrument(this)">
-          <p>Hats</p>
+          <p class="instrument">Hats</p>
+          <p class="keyboardLetter">"L"</p>
           <audio data-key="76" src="sounds/snappin-bap.wav"></audio>
         </div>
         <input
@@ -207,7 +132,8 @@
           onchange="SetVolume(this)"
         />
         <div data-key="186" class="key" onclick="playInstrument(this)">
-          <p>Snare</p>
+          <p class="instrument">Snare</p>
+          <p class="keyboardLetter">";"</p>
           <audio data-key="186" src="sounds/trigger-bap.wav"></audio>
         </div>
         <input
@@ -220,53 +146,14 @@
           onchange="SetVolume(this)"
         />
       </div>
-      <button id="stop" onclick="stop()">STOP</button>
+      <button id="stop" onclick="stop()">
+        STOP
+        <span
+          style="font-family: Raleway; margin:0 20px; font-size:32px; font-variant:unset"
+          >"space"</span
+        >
+      </button>
     </div>
     <!-- Container -->
-
-    <script>
-      window.addEventListener("keydown", function(e) {
-        const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
-        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-        audio.currentTime = 0;
-        audio.play();
-
-        key.classList.add("buttonClick");
-      });
-      window.addEventListener("keyup", function(e) {
-        const key = document.querySelector(`div[data-key="${e.keyCode}"]`);
-        key.classList.remove("buttonClick");
-      });
-
-      function playInstrument(e) {
-        const audio = document.querySelector(
-          `audio[data-key="${e.children[1].attributes[0].nodeValue}"]`
-        );
-        audio.currentTime = 0;
-        audio.play();
-      }
-
-      function stop() {
-        document.location.reload();
-      }
-
-      function SetVolume(val) {
-        //   console.log(val.value)
-        // var audio = document.querySelectorAll("audio")
-        // audio.forEach(function(element) {
-        //     var newVolume = element.volume
-        //     var exactVolume = val /100
-        //     console.log(val.value)
-        // })
-
-        var audio = document.querySelector(`audio[data-key="${val.id}"]`);
-        var volume = val.value / 100;
-        audio.volume = volume;
-        console.log(audio.volume);
-      }
-      function newFunction(event) {
-        console.log(event);
-      }
-    </script>
   </body>
 </html>

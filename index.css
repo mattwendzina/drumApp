@@ -1,0 +1,113 @@
+body {
+  font-family: "Major Mono Display", monospace;
+  background-image: url("images/saxophone-3366032_1280.jpg");
+  background-size: cover;
+  z-index: 1;
+}
+
+p.instrument {
+  flex: 2;
+}
+p.keyboardLetter {
+  font-family: "Raleway", serif;
+  flex: 1;
+  text-align: center;
+  font-size: 32px;
+}
+
+.container {
+  position: relative;
+  /* height: 100vh; */
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  z-index: 0;
+}
+body:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-image: linear-gradient(red, yellow);
+  opacity: 0.4;
+  z-index: 0;
+}
+
+h1 {
+  color: white;
+  font-size: 50px;
+  text-align: center;
+  z-index: 2;
+  flex: 1 100%;
+  margin: 10px;
+}
+
+.instructionsContainer {
+  flex: 1 100%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+}
+
+.instructionsContainer p {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.key {
+  font-variant: small-caps;
+  font-size: 52px;
+  height: 120px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: 3px 3px;
+  transition: 50ms ease-in-out;
+  background: #d3f1ff;
+  padding: 5px;
+}
+
+.key:hover,
+#stop:hover {
+  background: #88f08b;
+  box-shadow: 5px 5px;
+  cursor: pointer;
+}
+
+.guitars,
+.basses,
+.piano {
+  height: 160px;
+  width: 260px;
+}
+
+.buttonClick {
+  background: #88f08b;
+  box-shadow: 5px 5px;
+}
+
+button {
+  flex: 1 100%;
+  font-variant: small-caps;
+  font-size: 40px;
+  height: 60px;
+  width: 160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid 1px black;
+  border-radius: 5px;
+  margin: 5px;
+  box-shadow: 3px 3px;
+  transition: 50ms ease-in-out;
+  background: #d3f1ff;
+  padding: 5px;
+  font-family: "Major Mono Display", monospace;
+}

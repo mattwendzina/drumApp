@@ -1,2 +1,4 @@
 * linguist-vendored
 *.js linguist-vendored
+*.html linguist-vendored=true
+*.css linguist-vendored=true
